@@ -1,9 +1,6 @@
-BRANCH TEST
-
 # project_01
 repo for our first project 
-
-Guidelines
+-----Guidelines-----
 New library technology 
 Bootstrap css framework - or materialize
 Repeating element (tb, col)
@@ -13,3 +10,10 @@ User imput validaion
 No alerts comfirms or prompts
 Firebase or persistent data storae
 Mobile responsive 
+
+
+MY API 
+https://developer.musixmatch.com/
+Musixmatch API key 52fc0e7db3104ce339193574f525ecff
+https://materializecss.com/about.html
+
