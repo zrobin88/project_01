@@ -9,5 +9,5 @@ AJAX
 User imput validaion 
 2 API ( Allows cors, have dcumentation, JSON response, simple or no authentication)
 No alerts comfirms or prompts
-Firebase or persistent data storae
+Firebase or persistent data storage
 Mobile responsive 
