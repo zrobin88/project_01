@@ -50,6 +50,8 @@ let userInput = $("#artist-input").val();
     url: infoURL,
     method: "GET"
   }).then(function (response) {
+    $("#artist-info").empty();
+    $("#band-name").empty();
     console.log(response.artist.bio);
     let artistInfo = response.artist.bio.summary;
     $("#artist-info").append(artistInfo); 
