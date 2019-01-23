@@ -23,14 +23,13 @@ $("#artist-submit").on("click", function () {
     url: topTracksURL,
     method: "GET"
   }).then(function (response) {
-    let top_track_div = $("#top-tracks");
-    top_track_div.append("<ul>");
-    //loop through top 50 tracks to get top 10 
+    let track_dump_div = $("#track-dump");
     for (let i = 0; i < 10; i++) {
-      top_track_div.append(`<li>${response.toptracks.track[i].name}</li>`)
+      track_dump_div.append(`
+      <div class="row"> <div class="card blue-grey darken-1"> <div class="card-content white-text" id="top-tracks">
+      <h1>${response.toptracks.track[i].name}</h1> </div> </div> </div>
+      `)
     }
-    top_track_div.append("</ul>");
-
   });
 
 
