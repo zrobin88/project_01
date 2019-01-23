@@ -21,5 +21,20 @@ $.ajax({
 }).then(function (response) {
   console.log(response)
   $('#events').text(response[0].datetime);
+
+// loop for events
+
+let info = {
+  date: "response[i].datetime",
+  ticketURL: "response[i].offers[0].url",
+  venueName: "response[i].venue.name",
+  venueCity: "response[i].venue.city",
+  venueCountry:  "response[i].venue.country"
+   };
+
+  for (let i = 0; i < 5; i++) {
+    console.log([i]);
+  }
+
 });
 });
