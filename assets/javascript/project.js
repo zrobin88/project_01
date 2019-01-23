@@ -1,10 +1,42 @@
-var topTracks;
+
+
+$(document).ready(function(){
+  $('.tabs').tabs();
+});
+ 
+var topTrack0 = ["","","","","","","","","",""];
+var topTracksResponse;
+var artistInfoResponse;
+var artistInfo;
+var artistImg; 
+var bandName; 
+
+$("#artist-tab").on("click", function(){
+  $("#track-dump").html(""); 
+  track_dump_div = $("#track-dump");
+  for (let i =0; i<10; i++){
+  track_dump_div.append(`
+  <div class="row"> <div class="card blue-grey darken-1"> <div class="card-content white-text" id="top-tracks">
+  <h1>${topTracksResponse.toptracks.track[i].name}</h1> </div> </div> </div>
+  `);
+  } 
+  $("#artist-info").append(artistInfo);
+  $("#artist-info").append(`<img src="${artistImg}"/>`);
+  $("#band-name").text(bandName);
+});
+
+$("#events-tab").on("click", function(){
+  $("#artist-info").html('');
+  $("#band-name").html('');
+  $("#track-dump").html('');
+});
 
 // click event for submit button  
 $("#artist-submit").on("click", function () {
+
   $("#artist-info").html('');
   $("#band-name").html('');
-  $("#top-tracks").html('');
+  $("#track-dump").html('');
 
   event.preventDefault();
 
@@ -22,12 +54,14 @@ $("#artist-submit").on("click", function () {
   $.ajax({
     url: topTracksURL,
     method: "GET"
-  }).then(function (response) {
+  }).then(function (response_tt) {
+    topTracksResponse = response_tt; 
     let track_dump_div = $("#track-dump");
     for (let i = 0; i < 10; i++) {
+      topTrack0[i] = response_tt.toptracks.track[i].name;
       track_dump_div.append(`
       <div class="row"> <div class="card blue-grey darken-1"> <div class="card-content white-text" id="top-tracks">
-      <h1>${response.toptracks.track[i].name}</h1> </div> </div> </div>
+      <h1>${response_tt.toptracks.track[i].name}</h1> </div> </div> </div>
       `)
     }
   });
@@ -38,11 +72,16 @@ $("#artist-submit").on("click", function () {
   $.ajax({
     url: infoURL,
     method: "GET"
-  }).then(function (response) {
-    console.log(response.artist.bio);
-    let artistInfo = response.artist.bio.summary;
+  }).then(function (response_ai) {
+    console.log(response_ai);
+    console.log(response_ai.artist.bio);
+     artistInfo = response_ai.artist.bio.summary;
+     artistImg = response_ai.artist.image[3]["#text"]; 
+     bandName = response_ai.artist.name
+     artistInfoResponse = response_ai; 
     $("#artist-info").append(artistInfo);
-    $("#band-name").text(response.artist.name);
+    $("#artist-info").append(`<img src="${artistImg}"/>`);
+    $("#band-name").text(bandName);
   })
 
 
