@@ -1,5 +1,6 @@
 var topTracksResponse;
 var artistInfoResponse;
+var eventInfoResponse;
 var artistInfo;
 var artistImg;
 var bandName;
@@ -7,28 +8,38 @@ var bandName;
 
 //on-click event for the Artist Tab that loads Artist data as well as top track listings and clears all previous dynamic html
 $("#artist-tab").on("click", function () {
+
   $("#artist-info").html('');
   $("#track-dump").html('');
   $("#band-picture").html('');
-  $("#band-name").html('');;
+  $("#band-name").html('');
+  $("#similar-buttons").html('');
 
   track_dump_div = $("#track-dump");
 
   track_dump_div.append(`<h2 class="flow-text center-align white-text">What to listen to</h2>`)
   track_dump_div.append(`<ul>`)
-
   for (let i = 0; i < 10; i++) {
     track_dump_div.append(`<li class="white-text center-align" style="margin-left: 10px">
        ${topTracksResponse.toptracks.track[i].name}
     </li> `)
   }
-
   track_dump_div.append("</ul>")
 
 
   $("#artist-info").append(artistInfo);
   $("#band-picture").append(`<img class="responsive-img" src="${artistImg}"/>`);
   $("#band-name").append(`<h2 class="flow-text center-align">${bandName}</h2>`);
+
+  for (let i = 0; i < 2; i++) {
+    $("#similar-buttons").append(`
+      <a href=${artistInfoResponse.artist.similar.artist[i].url} target="_blank">
+        <img src=${artistInfoResponse.artist.similar.artist[i].image[1]["#text"]} title="${artistInfoResponse.artist.similar.artist[i].name}">
+      </a>
+    `)
+  }
+
+
 
 });
 
@@ -39,7 +50,26 @@ $("#events-tab").on("click", function () {
   $("#band-name").html('');
   $("#track-dump").html('');
   $("#band-picture").html('');
+  $("#similar-buttons").html('');
 
+    //destructuring
+    let { _embedded: { events, images, dates, venues } } = eventInfoResponse;
+
+    for (let i = 0; i < 6; i++) {
+      $(`somedynamicname${i}`).append(`
+          <a href="${events[i].url}">
+            <div class="col s3">
+              <img class="responsive-img" src="${events[i].images[0].url}">
+            </div>
+            <div class="col s9">
+              <h3>${events[i]._embedded.venues[0].city.name}, ${events[i]._embedded.venues[0].country.countryCode}</h3>
+              <h1>${events[i]._embedded.venues[0].name}</h1>
+              <p>${events[i].dates.start.localDate}</p>
+              <p>${moment(events[i].dates.start.localTime, "HH:mm:ss").format("h:mm A")}</p>
+            </div>
+          </a>
+        `)
+    }
 });
 
 // click event for submit button  
@@ -47,17 +77,18 @@ $("#artist-submit").on("click", function () {
 
   event.preventDefault();
 
+  $("#band-picture").html('');
+  $("#artist-info").html('');
+  $("#band-name").html('');
+  $("#track-dump").html('');
+  $("#similar-buttons").html('');
   let userInput = $("#artist-input").val().trim();
 
   let topTracksURL = `https://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=${userInput}&api_key=43e2eac1bdb3ea4e9d978121427666c0&format=json`
 
   let artistInfoURL = `https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${userInput}&api_key=43e2eac1bdb3ea4e9d978121427666c0&format=json`
 
-
-  $("#band-picture").html('');
-  $("#artist-info").html('');
-  $("#band-name").html('');
-  $("#track-dump").html('');
+  let eventInfoURL = `https://app.ticketmaster.com/discovery/v2/events.json?apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&keyword=${userInput}`
 
   //last.fm top tracks ajax call
   $.ajax({
@@ -92,19 +123,43 @@ $("#artist-submit").on("click", function () {
     $("#artist-info").append(artistInfo);
     $("#band-picture").append(`<img class="responsive-img" src="${artistImg}"/>`);
     $("#band-name").append(`<h2 class="flow-text center-align">${bandName}</h2>`);
-    
+
     for (let i = 0; i < 2; i++) {
       similarArtistButton.append(`
-        <a href=${response_ai.artist.similar.artist[i].url}>
+        <a href=${response_ai.artist.similar.artist[i].url} target="_blank">
           <img src=${response_ai.artist.similar.artist[i].image[1]["#text"]} title="${response_ai.artist.similar.artist[i].name}">
         </a>
-    
-      
       `)
     }
 
   })
 
+  $.ajax({
+    url: eventInfoURL,
+    method: "GET"
+  }).then(function (response_ei) {
+
+    eventInfoResponse = response_ei;
+
+    //destructuring
+    let { _embedded: { events, images, dates, venues } } = response_ei;
+
+    for (let i = 0; i < 6; i++) {
+      $(`somedynamicname${i}`).append(`
+      <a href="${events[i].url}">
+        <div class="col s3">
+          <img class="responsive-img" src="${events[i].images[0].url}">
+        </div>
+        <div class="col s9">
+          <h3>${events[i]._embedded.venues[0].city.name}, ${events[i]._embedded.venues[0].country.countryCode}</h3>
+          <h1>${events[i]._embedded.venues[0].name}</h1>
+          <p>${events[i].dates.start.localDate}</p>
+          <p>${moment(events[i].dates.start.localTime, "HH:mm:ss").format("h:mm A")}</p>
+        </div>
+      </a>
+    `)
+    }
+  })
 
   $("#hidden-card").removeClass("hide");
 
