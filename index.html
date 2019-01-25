@@ -2,93 +2,138 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Compiled and minified CSS -->
+
+    <!-- Materialize and project CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- /Materialize and project CSS -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    <!-- Title + Favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+    <title>Concerto</title>
+    <!-- /Title + Favicon -->
 
-    <title>Coding Rhapsody</title>
 </head>
-<nav class ="teal darken-1">
-    <div class="nav-wrapper">
-        <a href="#" class="brand-logo center">Concerto</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
 
-        </ul>
+<nav>
+    <div class="nav-wrapper cyan darken-3">
+        <a href="#" class="brand-logo center">Concerto</a>
     </div>
 </nav>
 
-<body class ="grey darken-2">
+<body class="grey darken-2">
     <div class="container">
-        <div class="card-content teal darken-1" style ="border-radius: 15px">
+
+        <!-- submission card -->
+        <div class="card-content cyan darken-3" id="submit-card-style">
+
+            <!-- submission field / button -->
             <form class="col s12" style="margin-top: 50px">
                 <div class="row">
-                    <div class="col m6">
+                    <div class="col s12 offset-s2">
                         <div class="input-field col s6">
-                            <input id="artist-input" type="text" data-length="10">
-                            <label for="artist-input"></label>
+                            <input class="white-text" id="artist-input" type="text" data-length="10" placeholder="Artist Name">
                         </div>
-                        <div class="col m6">
-                            <a class="waves-effect waves-light btn-large" id="artist-submit"><i class="material-icons right">cloud</i>Submit</a>
+
+                        <!-- working on styling for this button -->
+                        <div>
+                            <button type="submit" class="waves-effect waves-light btn-large blue-grey darken-3" id="artist-submit"><i
+                                    class="material-icons right">forward</i>Search</button>
                         </div>
+                        <!-- /working on styling for this button -->
                     </div>
                 </div>
             </form>
+            <!-- /submission field / button -->
+
         </div>
-        <div class="row">
+        <!-- /submission card -->
+
+        <!-- containing row  -->
+        <div class="row" style="margin-top: 15px;">
             <div class="col s12">
-                <div class="card" style="margin-top: 50px">
-                    <div class="card-content">
-                        <p></p>
-                    </div>
-                    <div class="card-tabs">
-                        <ul class="tabs tabs-fixed-width">
-                            <li class="tab"><a class="active" id="artist-tab" href="#test4">Artist</a></li>
-                            <li class="tab"><a href="#test5" id="events-tab">Events</a></li>
 
-                        </ul>
+                <!-- Artist / Event tabs -->
+                <div class="card-tabs">
+                    <ul class="tabs tabs-fixed-width cyan darken-4" id="tab-container">
+                        <li class="tab"><a class="active white-text" id="artist-tab" href="#">Artist</a></li>
+                        <li class="tab"><a class="white-text" href="#" id="events-tab">Events</a></li>
+                    </ul>
+                </div>
+                <!-- /Artist / Event tabs -->
 
-                    </div>
-                    <div class="card-content grey lighten-4">
-                            <div class="row">
+                <!-- Card body for pushing templates  -->
+                <div class="col">
+                    <div class="hide card blue-grey darken-1" id="hidden-card">
+                        <div class="row card-content grey lighten-4">
+
+                            <div class="col s3" style ="border-right: solid 1px black">
+                                <div class="row">
                                     <div class="col">
-                                        <div class="card blue-grey darken-1">
-                                            <div class="card-content white-text">
-                                                <span class="card-title" id="band-name"></span>
-                                                <p id="artist-info"></p>
-                                            </div>
-                    
-                                        </div>
+                                        <span class="card-title" id="band-name"></span>
                                     </div>
                                 </div>
-                                <div id="track-dump">
-                    
-                    
-                                </div>
+                                <div class="row">
+                                    <div class="col" id="band-picture">
 
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <ul>
+                                            <li>Twitter</li>
+                                            <li>Spotify</li>
+                                            <li>Facebook</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- <div class="hide card blue-grey darken-1" id="hidden-card">
+                                <div class="card-content white-text">
+                                    <span class="card-title" id="band-name"></span>
+                                    <p id="artist-info"></p>
+                                </div> -->
+                            </div>
+                            <div class="col s9">
+                                <div class="row" id ="artist-info" style = "margin-left: 5px"></div>
+                                <div class="row" id ="track-dump"></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col s6"></div>
-                        <div class="col s6"></div>
                     </div>
-                    <div class="row">
-                        <div class="col s6"></div>
-                        <div class="col s6"></div>
-                    </div>
-
                 </div>
-            </div>
+                <!-- <div id="track-dump"> -->
 
-           
-            <script type="text/javascript" src="assets/javascript/project.js"></script>
+                <!-- </div> -->
+            </div>
+            <!-- /Card body for pushing templates -->
+
+        </div>
+
+        <!-- Unsure? please let me know what this is -->
+        <div class="row">
+            <div class="col s6"></div>
+            <div class="col s6"></div>
+        </div>
+
+        <div class="row">
+            <div class="col s6"></div>
+            <div class="col s6"></div>
+        </div>
+        <!-- /Unsure? -->
+
+    </div>
+    </div>
+    <!-- /containing row -->
+
+
+    <script type="text/javascript" src="assets/javascript/project.js"></script>
 </body>
 
 </html>
