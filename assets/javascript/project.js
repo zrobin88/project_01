@@ -68,14 +68,14 @@ $("#events-tab").on("click", function () {
   for (let i = 0; i < 6; i++) {
     $(`#row-${i}`).append(`
         <a href="${events[i].url} target="_blank">
-          <div class="col s3">
+          <div class="col s5">
             <img class="responsive-img" src="${events[i].images[0].url}">
           </div>
-          <div class="col s9">
+          <div class="col s7">
             <h6 id="text-deco-none">${events[i]._embedded.venues[0].city.name}, ${events[i]._embedded.venues[0].country.countryCode}</h6>
-            <h4>${events[i]._embedded.venues[0].name}</h4>
-            <p>${events[i].dates.start.localDate}</p>
-            <p>${moment(events[i].dates.start.localTime, "HH:mm:ss").format("h:mm A")}</p>
+            <h4 class="flow-text">${events[i]._embedded.venues[0].name}</h4>
+            <p class="flow-text">${events[i].dates.start.localDate}</p>
+            <p class="flow-text">${moment(events[i].dates.start.localTime, "HH:mm:ss").format("h:mm A")}</p>
           </div>
         </a>
       `)
@@ -117,11 +117,11 @@ $("#artist-submit").on("click", function () {
     topTracksResponse = response_tt;
     track_dump_div = $("#track-dump");
 
-    track_dump_div.append(`<h2 class="flow-text center-align white-text">What to listen to</h2>`)
+    track_dump_div.append(`<h2 class="flow-text center-align">What to listen to</h2>`)
     track_dump_div.append(`<ul>`)
     for (let i = 0; i < 10; i++) {
       track_dump_div.append(`
-        <li class="white-text center-align" style="margin-left: 10px">
+        <li class="center-align" style="margin-left: 10px">
         ${response_tt.toptracks.track[i].name}
         </li> 
      `)}
