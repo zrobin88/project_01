@@ -147,7 +147,7 @@ $("#artist-submit").on("click", function () {
     for (let i = 0; i < 6; i++) {
       $(`somedynamicname${i}`).append(`
       <a href="${events[i].url}">
-        <div class="col s3">
+        <div class="col s3">  
           <img class="responsive-img" src="${events[i].images[0].url}">
         </div>
         <div class="col s9">
