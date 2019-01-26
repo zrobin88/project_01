@@ -1,97 +1,146 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Compiled and minified CSS -->
+
+    <!-- Materialize and project CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- /Materialize and project CSS -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-   
+    <!-- Title + Favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+    <title>Concerto</title>
+    <!-- /Title + Favicon -->
 
-    <title>Coding Rhapsody</title>
 </head>
-<nav>
-    <div class="nav-wrapper">
-        <a href="#" class="brand-logo center">Concerto</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
 
-        </ul>
+<nav>
+    <div class="nav-wrapper cyan darken-3">
+        <a href="#" class="brand-logo center">Concerto</a>
     </div>
 </nav>
 
-<body>
+<body class="grey darken-2">
     <div class="container">
-        <div class="row">
-            <div class="col s12">
-                <div class="card" style="margin-top: 50px">
-                    <div class="card-content">
-                        <p></p>
-                    </div>
-                    <div class="card-tabs">
-                        <ul class="tabs tabs-fixed-width">
-                            <li class="tab"><a class="active" href="#test4">Artist</a></li>
-                            <li class="tab"><a href="#test5">Events</a></li>
 
-                        </ul>
+        <!-- submission card -->
+        <div class="card-content cyan darken-3" id="submit-card-style">
 
-                    </div>
-                    <div class="card-content grey lighten-4">
-                        <div class="row">
-                            <form class="col s12">
-                                <div class="row">
-                                    <div class = "col m6">
-                                    <div class="input-field col s6">
-                                        <input id="artist-input" type="text" data-length="10">
-                                        <label for="artist-input"></label>
-                                        </div>
-                                        <div class="col m6">
-                                        <a class="waves-effect waves-light btn-large" id ="artist-submit"><i class="material-icons right">cloud</i>Submit</a>
-                                    </div>
-                                    </div>
-                                </div>
-                            </form>
+            <!-- submission field / button -->
+            <form class="col s12" style="margin-top: 50px">
+                <div class="row">
+                    <div class="col s12 offset-s2">
+                        <div class="input-field col s6">
+                            <input class="white-text" id="artist-input" type="text" data-length="10" placeholder="Artist Name">
                         </div>
+
+                        <!-- working on styling for this button -->
+                        <div>
+                            <button type="submit" class="waves-effect waves-light btn-large blue-grey darken-3" id="artist-submit"><i
+                                    class="material-icons right">forward</i>Search</button>
+                        </div>
+                        <!-- /working on styling for this button -->
                     </div>
-                    <div class = "row">
-                        <div class = "col s6"></div>
-                        <div class = "col s6" id = "top-tracks"></div>
-                    </div>
-                    <div class="row"> </div>
-                    <div class = "col s4"></div>
-                    <div class = "col s4">
-                        <div id="dateTime"></div>
-                        <div id="venueName"></div>
-                        <div id="venueCity"></div>
-                        <div id="venueCountry"></div>
-                        <div id="offersUrl"></div>
-                        <br>
-                        <div id="dateTimeTwo"></div>
-                        <div id="venueNameTwo"></div>
-                        <div id="venueCityTwo"></div>
-                        <div id="venueCountryTwo"></div>
-                        <div id="offersUrlTwo"></div>
-                        <br>
-                        <div id="dateTimeThree"></div>
-                        <div id="venueNameThree"></div>
-                        <div id="venueCityThree"></div>
-                        <div id="venueCountryThree"></div>
-                        <div id="offersUrlThree"></div>
-                   </div>
-                   <div class = "col s4"></div>
                 </div>
-            </div>
-
-
+            </form>
+            <!-- /submission field / button -->
 
         </div>
-        <script type="text/javascript" src="assets/javascript/project.js"></script>
+        <!-- /submission card -->
+
+        <!-- containing row  -->
+        <div class="row" style="margin-top: 15px;">
+            <div class="col s12">
+
+                <!-- Artist / Event tabs -->
+                <div class="card-tabs">
+                    <ul class="tabs tabs-fixed-width cyan darken-4" id="tab-container">
+                        <li class="tab"><a class="active white-text" id="artist-tab" href="#">Artist</a></li>
+                        <li class="tab"><a class="white-text" href="#" id="events-tab">Events</a></li>
+                    </ul>
+                </div>
+                <!-- /Artist / Event tabs -->
+
+                <!-- Card body for pushing templates  -->
+                <div class="col cyan darken-4">
+                    <div class="hide card blue-grey darken-1" id="hidden-card">
+                        <div class="row card-content blue-grey darken-1">
+
+                            <div class="col s3" style="border-right: solid 1px black; padding: 5px">
+                                <div class="row">
+                                    <span class="card-title white-text" id="band-name"></span>
+                                </div>
+                                <div class="row">
+                                    <div class="center-align" id="band-picture"></div>
+                                </div>
+                                <div class="row center-align" id="similar-buttons">
+
+                                </div>
+                            </div>
+                            <div class="col s9">
+                                <div class="row white-text" id="artist-info" style="margin-left: 5px"></div>
+                                <div class="row" id="track-dump"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div id="track-dump"> -->
+
+            <!-- </div> -->
+        </div>
+        <!-- /Card body for pushing templates -->
+
+    </div>
+
+    <!-- Unsure? please let me know what this is -->
+    <div class = "row">
+      <div class = "col s6"></div>
+      <div class = "col s6" id = "top-tracks"></div>
+  </div>
+  <div class="row"> </div>
+  <div class = "col s4"></div>
+  <div class = "col s4">
+      <div id="dateTime"></div>
+      <div id="venueName"></div>
+      <div id="venueCity"></div>
+      <div id="venueCountry"></div>
+      <div id="offersUrl"></div>
+      <br>
+      <div id="dateTimeTwo"></div>
+      <div id="venueNameTwo"></div>
+      <div id="venueCityTwo"></div>
+      <div id="venueCountryTwo"></div>
+      <div id="offersUrlTwo"></div>
+      <br>
+      <div id="dateTimeThree"></div>
+      <div id="venueNameThree"></div>
+      <div id="venueCityThree"></div>
+      <div id="venueCountryThree"></div>
+      <div id="offersUrlThree"></div>
+ </div>
+ <div class = "col s4"></div>
+</div>
+</div>
+
+    <!-- /Unsure? -->
+
+    </div>
+    </div>
+    <!-- /containing row -->
+
+
+    <script type="text/javascript" src="assets/javascript/project.js"></script>
 </body>
 
 </html>
@@ -107,5 +156,3 @@
    last fm = api_key=43e2eac1bdb3ea4e9d978121427666c0
    Auth Key Spotify: BQCR8BZwfGSl0HZVXHmtYn5MvjC2in066eMdGGgVlA2ktERQhkEifIWSLAUjVH9akkn5jM5cjKwqaMGaQ_5eHlQopCxMfWZXg-Dg0SQG5DMl2ZN7rnWsMHzNZSfzOZkmIv3cZmG6FJjiSzQ
 -->
-
- 
