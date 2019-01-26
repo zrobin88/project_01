@@ -72,7 +72,7 @@ $("#events-tab").on("click", function () {
             <img class="responsive-img" src="${events[i].images[0].url}">
           </div>
           <div class="col s9">
-            <h6>${events[i]._embedded.venues[0].city.name}, ${events[i]._embedded.venues[0].country.countryCode}</h6>
+            <h6 id="text-deco-none">${events[i]._embedded.venues[0].city.name}, ${events[i]._embedded.venues[0].country.countryCode}</h6>
             <h4>${events[i]._embedded.venues[0].name}</h4>
             <p>${events[i].dates.start.localDate}</p>
             <p>${moment(events[i].dates.start.localTime, "HH:mm:ss").format("h:mm A")}</p>
