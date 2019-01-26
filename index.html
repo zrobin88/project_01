@@ -14,6 +14,7 @@
     <!-- /Materialize and project CSS -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"></script>
 
     <!-- Title + Favicon -->
     <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
@@ -71,7 +72,7 @@
 
                 <!-- Card body for pushing templates  -->
                 <div class="col cyan darken-4">
-                    <div class="hide card blue-grey darken-1" id="hidden-card">
+                    <div class="hide card blue-grey darken-1" id="hidden-card-artist">
                         <div class="row card-content blue-grey darken-1">
 
                             <div class="col s3" style="border-right: solid 1px black; padding: 5px">
@@ -89,6 +90,26 @@
                                 <div class="row white-text" id="artist-info" style="margin-left: 5px"></div>
                                 <div class="row" id="track-dump"></div>
                             </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="hide card blue-grey darken-1" id="hidden-card-events">
+                        <div class="row card-content blue-grey darken-1">
+                            <div class="col s6">
+                                <div class="row" id="row-0" style="border: solid 2px"></div>
+                                <div class="row" id="row-1" style="border: solid 2px"></div>
+                                <div class="row" id="row-2" style="border: solid 2px"></div>
+                            </div>
+
+                            <div class="col s6">
+
+                                <div class="row" id="row-3" style="border: solid 2px"></div>
+                                <div class="row" id="row-4" style="border: solid 2px"></div>
+                                <div class="row" id="row-5" style="border: solid 2px"></div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -102,15 +123,7 @@
     </div>
 
     <!-- Unsure? please let me know what this is -->
-    <div class="row">
-        <div class="col s6"></div>
-        <div class="col s6"></div>
-    </div>
 
-    <div class="row">
-        <div class="col s6"></div>
-        <div class="col s6"></div>
-    </div>
     <!-- /Unsure? -->
 
     </div>
