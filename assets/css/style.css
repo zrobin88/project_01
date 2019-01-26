@@ -1,18 +1,18 @@
 a{
     text-align: center;
-  }
-  
-  #submit-card-style {
+}
+
+#submit-card-style {
     border-radius: 6px;
     margin-top: 15px;
     padding-top: 5px;
     padding-bottom: 25px;
-  }
-  
-  #tab-container {
+}
+
+#tab-container {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px
-  }
-  
-  
-  
+}
+.tickets{
+    @extend  waves-effect, waves-light, btn-large, blue-grey darken-3;
+}
